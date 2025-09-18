@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rida-cos <rida-cos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdcm <rdcm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 16:39:12 by rida-cos          #+#    #+#             */
-/*   Updated: 2025/08/10 19:11:42 by rida-cos         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:57:59 by rdcm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 static char	*read_file(char *buffer, int fd)
 {
 	ssize_t	bytes;
-	char	*temp_buffer;
+	char	*temp_buffer;	
 	char	*new_buffer;
 
 	bytes = 1;
@@ -38,6 +38,8 @@ static char	*read_file(char *buffer, int fd)
 		if (bytes <= 0)
 		{
 			free(temp_buffer);
+			if (bytes == -1)
+				return (NULL);
 			break ;
 		}
 		temp_buffer[bytes] = '\0';
@@ -105,32 +107,31 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+// # include <fcntl.h>
 
-# include <fcntl.h>
+// int	main(void)
+// {
+// 	const char	*path;
+// 	char		*line;
+// 	int			fd;
 
-int	main(void)
-{
-	const char	*path;
-	char		*line;
-	int			fd;
-
-	path = "gnl1.txt";
-	fd = open(path, O_RDONLY);
-	line = get_next_line(fd);
-	printf("Line 1:%s", line);
-	line = get_next_line(fd);
-	printf("Line 2:%s", line);
-	line = get_next_line(fd);
-	printf("Line 3:%s", line);
-	line = get_next_line(fd);
-	printf("Line 4:%s", line);
-	line = get_next_line(fd);
-	printf("Line 5:%s", line);
-	line = get_next_line(fd);
-	printf("Line 6:%s", line);
-	line = get_next_line(fd);
-	printf("Line 7:%s", line);
-	line = get_next_line(fd);
-	printf("Line 8:%s", line);
-	close(fd);
-}
+// 	path = "gnl1.txt";
+// 	fd = open(path, O_RDONLY);
+// 	line = get_next_line(fd);
+// 	printf("Line 1:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 2:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 3:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 4:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 5:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 6:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 7:%s", line);
+// 	line = get_next_line(fd);
+// 	printf("Line 8:%s", line);
+// 	close(fd);
+// }
